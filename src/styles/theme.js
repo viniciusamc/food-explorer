@@ -35,4 +35,8 @@ export default {
     CAKE_100: "#065E7C",
     CAKE_200: "#82F3FF",
   },
+  FONTS: {
+    POPPINS: "'Poppins', sans-serif;",
+    ROBOTO: "'Roboto', sans-serif;",
+  },
 };
