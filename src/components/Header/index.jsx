@@ -5,7 +5,7 @@ import { Button } from "../Button";
 export function Header() {
   return (
     <Container>
-      <Button text="Vinicius" />
+      <Button primary> AOBA </Button>
     </Container>
   );
 }
