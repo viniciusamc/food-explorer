@@ -1,11 +1,11 @@
 import { Container } from "./styles";
 import { Button } from "../Button";
-// import menuBurguer from "../../assets/menu.svg";
+import menuBurguer from "../../assets/icons/menu.svg";
 
 export function Header() {
   return (
     <Container>
-      <Button primary> AOBA </Button>
+      <Button primary>{menuBurguer}</Button>
     </Container>
   );
 }

@@ -1,5 +1,9 @@
 import { Container } from "./styles";
 
-export function Button({ ...props }) {
-  return <Container></Container>;
+export function Button({ text }) {
+  return (
+    <Container>
+      <button>{text}</button>
+    </Container>
+  );
 }

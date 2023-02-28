@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-  padding: 12px 24px;
-  background: ${(props) => (props.primary ? "palevioletred" : "red")};
+  height: 100%;
+  /* background: ${(props) => (props.primary ? "palevioletred" : "red")}; */
   cursor: pointer;
 
-  > p {
+  /* > p {
     font-size: 14px;
     font-family: ${({ theme }) => theme.FONTS.POPPINS};
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
-  }
+  } */
 `;
