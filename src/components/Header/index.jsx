@@ -2,6 +2,7 @@ import { Container, Logo, Cart } from "./styles";
 import menuBurguer from "../../assets/icons/menu.svg";
 import logo from "../../assets/svgs/explorer.svg";
 import cart from "../../assets/icons/receipt.svg";
+import { Button } from "../Button";
 
 import { api } from "../../services/api";
 
@@ -26,8 +27,6 @@ export function Header() {
         <img src={logo} />
         <h1>food explorer</h1>
       </Logo>
-
-      <h1>{quantityItensCart}</h1>
 
       <Cart>
         <img src={cart} />
