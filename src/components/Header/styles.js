@@ -11,8 +11,12 @@ export const StyledInput = styled(Input)`
 `;
 
 export const StyledHeader = styled(Button)`
+  max-width: 216px;
+
   @media (max-width: 950px) {
     background-color: transparent;
+    width: fit-content;
+    padding: 0;
   }
 `;
 
@@ -67,5 +71,3 @@ export const Exit = styled.div`
     display: none;
   }
 `;
-
-export const Cart = styled.div``;

@@ -1,7 +1,6 @@
 import {
   Container,
   Logo,
-  Cart,
   StyledInput,
   Search,
   Exit,
@@ -12,9 +11,6 @@ import menuBurguer from "../../assets/icons/menu.svg";
 import logo from "../../assets/svgs/explorer.svg";
 import cart from "../../assets/icons/receipt.svg";
 import exit from "../../assets/icons/exit.svg";
-
-import { Button } from "../Button";
-import { Input } from "../Input";
 
 import { useState, useEffect } from "react";
 
@@ -49,12 +45,10 @@ export function Header() {
         />
       </Search>
 
-      <Cart>
-        <StyledHeader
-          text={<img src={cart} />}
-          altText={`${screen ? "Pedidos (0)" : ""}`}
-        />
-      </Cart>
+      <StyledHeader
+        text={<img src={cart} />}
+        altText={`${screen ? "Pedidos (0)" : ""}`}
+      />
 
       <Exit>
         <img src={exit} />

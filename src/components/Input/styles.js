@@ -13,7 +13,7 @@ export const Container = styled.div`
     margin-left: 16px;
   }
   > input {
-    height: 56px;
+    height: 48px;
     width: 100%;
     padding: 12px;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
