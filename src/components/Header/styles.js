@@ -18,13 +18,21 @@ export const Container = styled.header`
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 950px) {
+    justify-content: space-between;
+  }
 
   > button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+
+    @media (min-width: 950px) {
+      display: none;
+    }
   }
 `;
 
@@ -40,9 +48,17 @@ export const Logo = styled.div`
 `;
 
 export const Search = styled.div`
-  width: 50%;
+  width: 60%;
+  @media (max-width: 950px) {
+    display: none;
+  }
 `;
 
-export const Exit = styled.div``;
+export const Exit = styled.div`
+  cursor: pointer;
+  @media (max-width: 950px) {
+    display: none;
+  }
+`;
 
 export const Cart = styled.div``;
