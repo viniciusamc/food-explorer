@@ -1,4 +1,13 @@
 import styled from "styled-components";
+import { Input } from "../Input";
+
+export const StyledInput = styled(Input)`
+  ::placeholder {
+    text-align: center;
+  }
+
+  width: 500px;
+`;
 
 export const Container = styled.header`
   width: 100vw;
@@ -29,5 +38,11 @@ export const Logo = styled.div`
     font-size: 24px;
   }
 `;
+
+export const Search = styled.div`
+  width: 50%;
+`;
+
+export const Exit = styled.div``;
 
 export const Cart = styled.div``;
