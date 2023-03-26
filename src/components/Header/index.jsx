@@ -1,4 +1,12 @@
-import { Container, Logo, Cart, StyledInput, Search, Exit } from "./styles";
+import {
+  Container,
+  Logo,
+  Cart,
+  StyledInput,
+  Search,
+  Exit,
+  StyledHeader,
+} from "./styles";
 import { AiOutlineSearch } from "react-icons/ai";
 import menuBurguer from "../../assets/icons/menu.svg";
 import logo from "../../assets/svgs/explorer.svg";
@@ -42,10 +50,10 @@ export function Header() {
       </Search>
 
       <Cart>
-        <Button
+        <StyledHeader
           text={<img src={cart} />}
           altText={`${screen ? "Pedidos (0)" : ""}`}
-        ></Button>
+        />
       </Cart>
 
       <Exit>

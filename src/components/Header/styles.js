@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Input } from "../Input";
+import { Button } from "../Button";
 
 export const StyledInput = styled(Input)`
   ::placeholder {
@@ -7,6 +8,12 @@ export const StyledInput = styled(Input)`
   }
 
   width: 500px;
+`;
+
+export const StyledHeader = styled(Button)`
+  @media (max-width: 950px) {
+    background-color: transparent;
+  }
 `;
 
 export const Container = styled.header`
