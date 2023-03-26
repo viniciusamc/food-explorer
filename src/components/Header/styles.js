@@ -48,7 +48,7 @@ export const Logo = styled.div`
 `;
 
 export const Search = styled.div`
-  width: 60%;
+  width: 40%;
   @media (max-width: 950px) {
     display: none;
   }

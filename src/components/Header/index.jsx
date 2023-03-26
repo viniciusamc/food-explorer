@@ -8,7 +8,20 @@ import exit from "../../assets/icons/exit.svg";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
+import { useState, useEffect } from "react";
+
 export function Header() {
+  const [screen, setScreen] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setScreen(window.innerWidth > 950);
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <Container>
       <button>
@@ -29,7 +42,10 @@ export function Header() {
       </Search>
 
       <Cart>
-        <img src={cart} />
+        <Button
+          text={<img src={cart} />}
+          altText={`${screen ? "Pedidos (0)" : ""}`}
+        ></Button>
       </Cart>
 
       <Exit>
