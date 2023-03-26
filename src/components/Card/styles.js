@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../Button";
 
 export const Container = styled.div`
   display: flex;
@@ -7,12 +8,16 @@ export const Container = styled.div`
   border-radius: 12px;
   padding: 24px;
 
-  width: fit-content;
+  min-width: 210px;
+  width: 90vw;
+  max-width: 350px;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 
   position: relative;
+
+  border: 1px solid ${({ theme }) => theme.COLORS.DARK_300};
 `;
 
 export const Content = styled.div`
@@ -20,6 +25,10 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
+  img {
+    width: 80%;
+  }
 `;
 
 export const Text = styled.div`
@@ -30,7 +39,7 @@ export const Text = styled.div`
 
   h2 {
     font-family: ${({ theme }) => theme.FONTS.POPPINS};
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 500;
   }
 
@@ -54,6 +63,10 @@ export const Quantity = styled.div`
   gap: 14px;
 
   font-size: 18px;
+
+  span {
+    cursor: pointer;
+  }
 `;
 
 export const Favorite = styled.div`
@@ -62,4 +75,13 @@ export const Favorite = styled.div`
   right: 16px;
 
   font-size: 32px;
+
+  cursor: pointer;
+`;
+
+export const StyledButton = styled(Button)`
+  font-size: 18px;
+  font-weight: 500;
+  font-family: ${({ theme }) => theme.FONTS.POPPINS};
+  background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
 `;

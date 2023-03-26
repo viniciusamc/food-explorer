@@ -1,10 +1,32 @@
-import { Container, Content, Text, Quantity, Favorite } from "./styles";
-import { Button } from "../Button";
-
+import {
+  Container,
+  Content,
+  Text,
+  Quantity,
+  Favorite,
+  StyledButton,
+} from "./styles";
 import { AiOutlinePlus, AiOutlineRight, AiOutlineHeart } from "react-icons/ai";
 import { IoIosRemove } from "react-icons/io";
+import { useState, useEffect } from "react";
+
+import heart from "../../assets/icons/heart.svg";
 
 export function Card({ image, altImage, title, value, ...rest }) {
+  const [req, setReq] = useState(1);
+
+  function handleAdd() {
+    setReq(req + 1);
+  }
+
+  function handleSub() {
+    setReq(req - 1);
+
+    if (req <= 1) {
+      setReq(1);
+    }
+  }
+
   return (
     <Container>
       <Content>
@@ -18,15 +40,19 @@ export function Card({ image, altImage, title, value, ...rest }) {
         </Text>
 
         <Quantity>
-          <IoIosRemove />
-          <h3>01</h3>
-          <AiOutlinePlus />
+          <span>
+            <IoIosRemove onClick={handleSub} />
+          </span>
+          <h3>{req}</h3>
+          <span>
+            <AiOutlinePlus onClick={handleAdd} />
+          </span>
         </Quantity>
 
-        <Button text="Inclur" />
+        <StyledButton text="Incluir" />
 
         <Favorite>
-          <AiOutlineHeart />
+          <img src={heart} />
         </Favorite>
       </Content>
     </Container>
