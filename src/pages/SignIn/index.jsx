@@ -1,6 +1,7 @@
 import { Container, Logo, Form } from "./styles";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+// import { Link } from "react-router-dom";
 
 export function SignIn() {
   return (
@@ -14,7 +15,7 @@ export function SignIn() {
 
         <Button text={"Entrar"} />
 
-        <a href="#">Criar uma conta</a>
+        {/* <Link to="#">Não tem uma conta? Cadastre-se</Link> */}
       </Form>
     </Container>
   );
