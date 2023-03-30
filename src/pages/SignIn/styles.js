@@ -7,6 +7,11 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 `;
 
 export const Logo = styled.div`
@@ -31,13 +36,26 @@ export const Form = styled.form`
   width: 80vw;
   max-width: 500px;
 
-  @media (min-width: 768px) {
+  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+
+  > h1 {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
     background-color: ${({ theme }) => theme.COLORS.DARK_700};
     border-radius: 16px;
     padding: 64px;
-  }
+    margin: 0 0;
 
-  color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    > h1 {
+      display: block;
+      font-family: ${({ theme }) => theme.FONTS.POPPINS};
+      font-weight: 500;
+      font-size: 32px;
+      text-align: center;
+    }
+  }
 `;
 
 export const Content = styled.div`
