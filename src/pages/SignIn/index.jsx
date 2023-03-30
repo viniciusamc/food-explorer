@@ -16,10 +16,12 @@ export function SignIn() {
           <label>Seu nome</label>
           <Input placeholder="Exemplo: Maria da Silva"></Input>
         </Content>
+
         <Content>
           <label>Email</label>
           <Input placeholder="Exemplo: exemplo@exemplo.com.br"></Input>
         </Content>
+
         <Content>
           <label>Senha</label>
           <Input placeholder="No mínimo 6 caracteres" />

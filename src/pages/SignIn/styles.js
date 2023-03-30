@@ -45,7 +45,10 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 8px;
 
-  font-size: 16px;
+  > label {
+    font-family: ${({ theme }) => theme.FONTS.POPPINS};
+    color: ${({ theme }) => theme.COLORS.LIGHT_400};
+  }
 `;
 
 export const Link = styled.a`
