@@ -10,6 +10,7 @@ export const Container = styled.div`
   border-radius: 10px;
   padding: 12px 24px;
   font-size: 14px;
+  font-family: ${({ theme }) => theme.FONTS.POPPINS};
 
   display: flex;
   justify-content: center;
@@ -19,7 +20,6 @@ export const Container = styled.div`
   p {
     font-size: 14px;
     font-weight: 500;
-    font-family: ${({ theme }) => theme.FONTS.POPPINS};
   }
 
   &:disabled {

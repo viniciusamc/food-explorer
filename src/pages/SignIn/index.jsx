@@ -27,7 +27,7 @@ export function SignIn() {
           <Input placeholder="No mínimo 6 caracteres" />
         </Content>
 
-        <Button text={"Entrar"} />
+        <Button text={"Criar conta"} />
 
         <Link>Já tenho uma conta</Link>
       </Form>
