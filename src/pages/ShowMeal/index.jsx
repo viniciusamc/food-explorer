@@ -1,5 +1,5 @@
 import { Container } from "./styles";
 
-export function AddMeal() {
+export function ShowMeal() {
   return <Container></Container>;
 }
