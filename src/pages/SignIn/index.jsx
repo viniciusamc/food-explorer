@@ -11,11 +11,7 @@ export function SignIn() {
         <img src={logo} />
       </Logo>
       <Form>
-        <h1>Crie sua Conta</h1>
-        <Content>
-          <label>Seu nome</label>
-          <Input placeholder="Exemplo: Maria da Silva"></Input>
-        </Content>
+        <h1>Faça login</h1>
 
         <Content>
           <label>Email</label>
@@ -29,7 +25,7 @@ export function SignIn() {
 
         <Button text={"Criar conta"} />
 
-        <Link>Já tenho uma conta</Link>
+        <Link>Criar uma conta</Link>
       </Form>
     </Container>
   );
