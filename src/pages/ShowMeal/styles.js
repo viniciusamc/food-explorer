@@ -42,8 +42,8 @@ export const Form = styled.form``;
 
 export const Label = styled.div``;
 
-export const Col3 = styled.div`
+export const Col = styled.div`
   display: flex;
   width: 100%;
-  gap: 16px;
+  gap: 32px;
 `;

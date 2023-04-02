@@ -1,4 +1,4 @@
-import { Container, Content, Link, Form, Label, Col3 } from "./styles";
+import { Container, Content, Link, Form, Label, Col } from "./styles";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 
@@ -14,17 +14,16 @@ export function ShowMeal() {
       <h1>Adicionar prato</h1>
       <Content>
         <Form>
-          <Col3>
-            <Label>
-              <Input placeholder={"Hello"} label="as" />
-            </Label>
-            <Label>
-              <Input placeholder={"Ex.: Salada Ceasar"} type={"text"} />
-            </Label>
-            <Label>
-              <Input placeholder={"Refeição"} type={"select"} />
-            </Label>
-          </Col3>
+          <Col>
+            <Input placeholder={"Hello"} label="Imagem do prato" />
+            <Input placeholder={"Ex.: Salada Ceasar"} label="Nome" />
+            <Input placeholder={"Refeição"} type={"select"} label="Categoria" />
+          </Col>
+
+          <Col>
+            <Input placeholder={"Ingredientes"} label="Ingredientes" />
+            <Input placeholder={"R$ 0,00"} label="Preço" />
+          </Col>
         </Form>
       </Content>
     </Container>
