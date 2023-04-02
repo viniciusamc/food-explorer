@@ -1,19 +1,20 @@
 import { Container, Content, Link, Form, Label, Col } from "./styles";
+import { TextArea } from "../../components/TextArea";
 import { Header } from "../../components/Header";
+import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
 import { AiOutlineLeft } from "react-icons/ai";
-import { TextArea } from "../../components/TextArea";
 
 export function ShowMeal() {
   return (
     <Container>
       <Header />
-      <Link>
-        <AiOutlineLeft />
-      </Link>
-      <h1>Adicionar prato</h1>
       <Content>
+        <Link>
+          <AiOutlineLeft />
+        </Link>
+        <h1>Adicionar prato</h1>
         <Form>
           <Col>
             <Input placeholder={"Hello"} label="Imagem do prato" />
@@ -26,7 +27,17 @@ export function ShowMeal() {
             <Input placeholder={"R$ 0,00"} label="Preço" />
           </Col>
 
-          <TextArea />
+          <TextArea
+            placeholder={
+              "Fale brevemente sobre o prato, seus ingredientes e composição"
+            }
+            label="Descrição"
+          />
+
+          <Button
+            text={"Salvar Alterações"}
+            style={{ backgroundColor: "#AB4D55" }}
+          />
         </Form>
       </Content>
     </Container>

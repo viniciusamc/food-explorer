@@ -9,7 +9,13 @@ export const Container = styled.div`
   }
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  width: 85vw;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
 
 export const Link = styled.div`
   display: flex;
@@ -38,12 +44,18 @@ export const Link = styled.div`
   }
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
 
 export const Label = styled.div``;
 
 export const Col = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 32px;
+  @media (min-width: 1024px) {
+    display: flex;
+    width: 100%;
+    gap: 32px;
+  }
 `;
