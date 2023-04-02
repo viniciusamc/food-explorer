@@ -53,6 +53,10 @@ export const Form = styled.form`
 export const Label = styled.div``;
 
 export const Col = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
   @media (min-width: 1024px) {
     display: flex;
     width: 100%;
