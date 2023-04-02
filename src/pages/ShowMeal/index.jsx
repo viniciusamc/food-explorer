@@ -16,15 +16,12 @@ export function ShowMeal() {
         <Form>
           <Col3>
             <Label>
-              <label>Imagem do prato</label>
-              <Input placeholder={"Hello"} type={"image"} />
+              <Input placeholder={"Hello"} label="as" />
             </Label>
             <Label>
-              <label>Imagem do prato</label>
               <Input placeholder={"Ex.: Salada Ceasar"} type={"text"} />
             </Label>
             <Label>
-              <label>Imagem do prato</label>
               <Input placeholder={"Refeição"} type={"select"} />
             </Label>
           </Col3>
