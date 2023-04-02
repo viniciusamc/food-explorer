@@ -4,7 +4,7 @@ import { Button } from "../../components/Button";
 
 import logo from "../../assets/logo.svg";
 
-export function SignOut() {
+export function SignUp() {
   return (
     <Container>
       <Logo>

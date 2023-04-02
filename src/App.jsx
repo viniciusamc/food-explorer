@@ -4,10 +4,10 @@ import salada from "./assets/meals/salada.svg";
 import { Carousel } from "./components/Carousel";
 import { ShowMeal } from "./pages/ShowMeal";
 import { SignIn } from "./pages/SignIn";
-import { SignOut } from "./pages/SignOut";
+import { SignUp } from "./pages/SignUp";
 
 function App() {
-  return <SignOut />;
+  return <SignUp />;
 }
 
 export default App;
