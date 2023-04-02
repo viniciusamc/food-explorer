@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
 
 import { AiOutlineLeft } from "react-icons/ai";
+import { TextArea } from "../../components/TextArea";
 
 export function ShowMeal() {
   return (
@@ -24,6 +25,8 @@ export function ShowMeal() {
             <Input placeholder={"Ingredientes"} label="Ingredientes" />
             <Input placeholder={"R$ 0,00"} label="Preço" />
           </Col>
+
+          <TextArea />
         </Form>
       </Content>
     </Container>
