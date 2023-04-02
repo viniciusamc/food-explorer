@@ -12,20 +12,11 @@ export function SignOut() {
       </Logo>
       <Form>
         <h1>Crie sua Conta</h1>
-        <Content>
-          <label>Seu nome</label>
-          <Input placeholder="Exemplo: Maria da Silva"></Input>
-        </Content>
+        <Input placeholder="Exemplo: Maria da Silva" label="Seu nome" />
 
-        <Content>
-          <label>Email</label>
-          <Input placeholder="Exemplo: exemplo@exemplo.com.br"></Input>
-        </Content>
+        <Input placeholder="Exemplo: exemplo@exemplo.com.br" label="Email" />
 
-        <Content>
-          <label>Senha</label>
-          <Input placeholder="No mínimo 6 caracteres" />
-        </Content>
+        <Input placeholder="No mínimo 6 caracteres" label="Senha" />
 
         <Button text={"Criar conta"} />
 
