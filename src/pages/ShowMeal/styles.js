@@ -55,10 +55,12 @@ export const Label = styled.div``;
 export const Col = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
 
   @media (min-width: 1024px) {
     display: flex;
+    flex-direction: row;
     width: 100%;
     gap: 32px;
   }

@@ -5,6 +5,7 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
 import { AiOutlineLeft } from "react-icons/ai";
+import { IngredientItem } from "../../components/IngredientItem";
 
 export function ShowMeal() {
   return (
@@ -23,7 +24,8 @@ export function ShowMeal() {
           </Col>
 
           <Col>
-            <Input placeholder={"Ingredientes"} label="Ingredientes" />
+            <IngredientItem value="Pão " />
+            <IngredientItem isNew placeholder="Adicionar  " />
             <Input placeholder={"R$ 0,00"} label="Preço" />
           </Col>
 
