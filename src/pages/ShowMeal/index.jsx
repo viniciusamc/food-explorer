@@ -1,9 +1,10 @@
-import { Container, Back, Content, Info } from "./styles";
+import { Container, Back, Content, Info, Tags } from "./styles";
 
 import { AiOutlineLeft } from "react-icons/ai";
 
 import salada from "../../assets/meals/salada.png";
 import { Tag } from "../../components/Tag";
+import { Footer } from "../../components/Footer";
 
 export function ShowMeal() {
   return (
@@ -22,9 +23,15 @@ export function ShowMeal() {
             Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
           </p>
 
-          <Tag text="ABLA" />
+          <Tags>
+            <Tag text="Vegetariano" />
+            <Tag text="Vegano" />
+            <Tag text="Sem Glúten" />
+          </Tags>
         </Info>
       </Content>
+
+      <Footer />
     </Container>
   );
 }
