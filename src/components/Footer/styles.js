@@ -12,10 +12,23 @@ export const Container = styled.footer`
   align-items: center;
   padding: 20px 0;
 
+  > img {
+    width: 120px;
+
+    @media (min-width: 530px) {
+      width: 180px;
+    }
+  }
+
   > h3 {
+    font-size: 12px;
     color: ${({ theme }) => theme.COLORS.LIGHT_200};
     font-family: ${({ theme }) => theme.FONTS.ROBOTO};
-    font-size: 14px;
     font-weight: 400;
+    text-align: center;
+
+    @media (min-width: 530px) {
+      font-size: 14px;
+    }
   }
 `;
