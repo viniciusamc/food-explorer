@@ -11,5 +11,6 @@ export default createGlobalStyle`
 
   body{
     background-color: ${({ $theme }) => theme.COLORS.DARK_400};
+    margin-bottom: 80px;
   }
 `;

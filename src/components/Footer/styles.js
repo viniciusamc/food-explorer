@@ -4,7 +4,8 @@ export const Container = styled.footer`
   width: 100vw;
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-  position: absolute;
+  position: fixed;
+  padding-top: 80px;
   bottom: 0;
 
   display: flex;
@@ -30,5 +31,9 @@ export const Container = styled.footer`
     @media (min-width: 530px) {
       font-size: 14px;
     }
+  }
+
+  + * {
+    margin-top: 100px;
   }
 `;
