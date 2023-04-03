@@ -1,14 +1,33 @@
-import { Container, Back, Content, Info, Tags } from "./styles";
+import { Container, Back, Content, Info, Tags, Cart } from "./styles";
 
-import { AiOutlineLeft } from "react-icons/ai";
+import { AiOutlineLeft, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 import salada from "../../assets/meals/salada.png";
+import recipe from "../../assets/icons/receipt.svg";
+
 import { Tag } from "../../components/Tag";
 import { Footer } from "../../components/Footer";
 
+import { useState } from "react";
+import { Button } from "../../components/Button";
+import { Header } from "../../components/Header";
+
 export function ShowMeal() {
+  const [count, setCount] = useState(1);
+
+  function handleAdd() {
+    setCount(count + 1);
+  }
+
+  function handleRemove() {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  }
+
   return (
     <Container>
+      <Header />
       <Back>
         <AiOutlineLeft />
         <span>Voltar</span>
@@ -24,10 +43,21 @@ export function ShowMeal() {
           </p>
 
           <Tags>
-            <Tag text="Vegetariano" />
-            <Tag text="Vegano" />
-            <Tag text="Sem Glúten" />
+            <Tag text="alface" />
+            <Tag text="cebola" />
+            <Tag text="pão naan" />
+            <Tag text="pepino" />
+            <Tag text="rabanete" />
+            <Tag text="tomate" />
           </Tags>
+
+          <Cart>
+            <AiOutlineMinus onClick={handleRemove} />
+            <span>{count}</span>
+            <AiOutlinePlus onClick={handleAdd} />
+
+            <Button icon={<img src={recipe} />} text="pedir - R$ 25,00" />
+          </Cart>
         </Info>
       </Content>
 
