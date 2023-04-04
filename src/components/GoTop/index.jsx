@@ -5,11 +5,11 @@ import { BsFillArrowDownCircleFill } from "react-icons/bs";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export default function GoTop() {
+export function GoTop() {
   const [isVisible, setIsVisible] = useState(false);
 
   function handleGoTop() {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   useEffect(() => {

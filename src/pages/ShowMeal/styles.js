@@ -27,6 +27,7 @@ export const Content = styled.div`
   align-items: center;
   text-align: center;
   flex: 1;
+  gap: 24px;
 `;
 
 export const Info = styled.div`
