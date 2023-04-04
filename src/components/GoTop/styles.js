@@ -9,9 +9,9 @@ export const Container = styled.button`
   cursor: pointer;
   font-size: 32px;
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
-  /* border-radius: 99px; */
-  /* padding: 8px; */
   background: none;
   transform: rotate(180deg);
-  /* background-color: ${({ theme }) => theme.COLORS.DARK_200}; */
+  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
+  transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
 `;
