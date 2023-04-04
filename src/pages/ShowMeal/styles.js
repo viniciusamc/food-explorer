@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 
   color: ${({ theme }) => theme.COLORS.LIGHT_300};
   font-family: ${({ theme }) => theme.FONTS.POPPINS};
@@ -25,6 +26,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  flex: 1;
 `;
 
 export const Info = styled.div`

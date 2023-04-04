@@ -11,6 +11,7 @@ import { Footer } from "../../components/Footer";
 import { useState } from "react";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
+import GoTop from "../../components/GoTop";
 
 export function ShowMeal() {
   const [count, setCount] = useState(1);
@@ -60,7 +61,7 @@ export function ShowMeal() {
           </Cart>
         </Info>
       </Content>
-
+      <GoTop />
       <Footer />
     </Container>
   );

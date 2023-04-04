@@ -4,14 +4,11 @@ export const Container = styled.footer`
   width: 100vw;
   background-color: ${({ theme }) => theme.COLORS.DARK_600};
 
-  position: fixed;
-  padding-top: 80px;
-  bottom: 0;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px 0;
+  margin-top: 32px;
 
   > img {
     width: 120px;
@@ -31,9 +28,5 @@ export const Container = styled.footer`
     @media (min-width: 530px) {
       font-size: 14px;
     }
-  }
-
-  + * {
-    margin-top: 100px;
   }
 `;
