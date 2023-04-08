@@ -8,11 +8,13 @@ function AuthProvider({ children }) {
 
   async function signIn({ email, password }) {
     try {
-      const response = api.post("/sessions", { email, password });
-
-      const { token, user } = response.data;
-      api.defaults.headers.authorization = `Bearer ${token}`;
-      setData({ token, user });
+      const response = api
+        .post("/sessions", { email, password })
+        .then((response) => {
+          const { user, token } = response.data;
+          api.defaults.headers.authorization = `Bearer ${token}`;
+          setData({ user, token });
+        });
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);

@@ -36,7 +36,6 @@ export function SignIn() {
           placeholder="No mínimo 6 caracteres"
           label="Senha"
           type="password"
-          autoComplete="on"
           onChange={(e) => setPassword(e.target.value)}
         />
 
