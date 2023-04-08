@@ -8,16 +8,19 @@ import {
 } from "./styles";
 import { AiOutlineSearch } from "react-icons/ai";
 import menuBurguer from "../../assets/icons/menu.svg";
-import logo from "../../assets/svgs/explorer.svg";
+import logo from "../../assets/logo.svg";
 import cart from "../../assets/icons/receipt.svg";
 import exit from "../../assets/icons/exit.svg";
+
 import { useAuth } from "../../hooks/auth";
 
 import { useState, useEffect } from "react";
+import { api } from "../../services/api";
 
 export function Header() {
   const [screen, setScreen] = useState(false);
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
     function handleResize() {
@@ -32,6 +35,23 @@ export function Header() {
     signOut();
   }
 
+  useEffect(() => {
+    if (user.role === "user") {
+      api
+        .get(`/cart/${user.id}`)
+        .then((response) => {
+          setCartCount(response.data.cartCount);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data.message);
+          } else {
+            console.log("Erro ao buscar favoritos");
+          }
+        });
+    }
+  }, [user]);
+
   return (
     <Container>
       <button>
@@ -40,8 +60,7 @@ export function Header() {
 
       <Logo>
         <img src={logo} />
-        <h1>food explorer</h1>
-        <span>admin</span>
+        {user.role === "admin" ? <span>admin</span> : <span></span>}
       </Logo>
 
       <Search>
@@ -52,10 +71,14 @@ export function Header() {
         />
       </Search>
 
-      <StyledHeader
-        text={<img src={cart} />}
-        altText={`${screen ? "Pedidos (0)" : ""}`}
-      />
+      {user.role === "admin" ? (
+        <StyledHeader altText={`${screen ? "Novo Prato" : ""}`} />
+      ) : (
+        <StyledHeader
+          text={<img src={cart} />}
+          altText={`${screen ? `Pedidos (${cartCount})` : ""}`}
+        />
+      )}
 
       <Exit onClick={handleLogout}>
         <img src={exit} />

@@ -49,12 +49,25 @@ export const Container = styled.header`
 
 export const Logo = styled.div`
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
-  > h1 {
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+  > img {
+    width: 20vw;
+    max-width: 200px;
+    min-width: 140px;
+  }
+
+  > span {
+    color: ${({ theme }) => theme.COLORS.CAKE_200};
     font-family: ${({ theme }) => theme.FONTS.POPPINS};
-    font-size: 24px;
+  }
+
+  @media (min-width: 950px) {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
   }
 `;
 
