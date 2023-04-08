@@ -1,6 +1,8 @@
-import { Container, Logo, Form, Content, Link } from "./styles";
+import { Container, Logo, Form, Content } from "./styles";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/logo.svg";
 
@@ -19,7 +21,7 @@ export function SignIn() {
 
         <Button text={"Criar conta"} />
 
-        <Link>Criar uma conta</Link>
+        <Link to="/register">Criar uma conta</Link>
       </Form>
     </Container>
   );

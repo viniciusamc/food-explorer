@@ -56,6 +56,15 @@ export const Form = styled.form`
       text-align: center;
     }
   }
+
+  > a {
+    font-family: ${({ theme }) => theme.FONTS.POPPINS};
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    text-decoration: none;
+  }
 `;
 
 export const Content = styled.div`
