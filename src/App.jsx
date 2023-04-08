@@ -2,10 +2,10 @@ import { Card } from "./components/Card/input";
 import { Header } from "./components/Header";
 import salada from "./assets/meals/salada.svg";
 import { Carousel } from "./components/Carousel";
-import { ShowMeal } from "./pages/ShowMeal";
+import { SignUp } from "./pages/SignUp";
 
 function App() {
-  return <ShowMeal />;
+  return <SignUp />;
 }
 
 export default App;
