@@ -11,11 +11,13 @@ import menuBurguer from "../../assets/icons/menu.svg";
 import logo from "../../assets/svgs/explorer.svg";
 import cart from "../../assets/icons/receipt.svg";
 import exit from "../../assets/icons/exit.svg";
+import { useAuth } from "../../hooks/auth";
 
 import { useState, useEffect } from "react";
 
 export function Header() {
   const [screen, setScreen] = useState(false);
+  const { signOut } = useAuth();
 
   useEffect(() => {
     function handleResize() {
@@ -26,6 +28,10 @@ export function Header() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  function handleLogout() {
+    signOut();
+  }
+
   return (
     <Container>
       <button>
@@ -35,6 +41,7 @@ export function Header() {
       <Logo>
         <img src={logo} />
         <h1>food explorer</h1>
+        <span>admin</span>
       </Logo>
 
       <Search>
@@ -50,7 +57,7 @@ export function Header() {
         altText={`${screen ? "Pedidos (0)" : ""}`}
       />
 
-      <Exit>
+      <Exit onClick={handleLogout}>
         <img src={exit} />
       </Exit>
     </Container>
