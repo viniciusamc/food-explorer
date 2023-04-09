@@ -12,9 +12,13 @@ import { useState } from "react";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { GoTop } from "../../components/GoTop";
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
+import { Link } from "react-router-dom";
 
 export function ShowMeal() {
   const [count, setCount] = useState(1);
+  const { user } = useAuth();
 
   function handleAdd() {
     setCount(count + 1);
@@ -26,12 +30,18 @@ export function ShowMeal() {
     }
   }
 
+  function handleAddToCart() {
+    api.post("/cart", {});
+  }
+
   return (
     <Container>
       <Header />
       <Back>
-        <AiOutlineLeft />
-        <span>Voltar</span>
+        <Link to="/">
+          <AiOutlineLeft />
+          Voltar
+        </Link>
       </Back>
 
       <Content>

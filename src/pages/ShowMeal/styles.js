@@ -19,6 +19,13 @@ export const Back = styled.div`
   font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
+  > a {
+    color: ${({ theme }) => theme.COLORS.LIGHT_300};
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 `;
 
 export const Content = styled.div`

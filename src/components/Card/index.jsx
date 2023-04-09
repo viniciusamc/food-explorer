@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 
 import heart from "../../assets/icons/heart.svg";
 
-export function Card({ image, altImage, title, value, ...rest }) {
+export function Card({ image, altImage, title, value }) {
   const [req, setReq] = useState(1);
 
   function handleAdd() {

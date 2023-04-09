@@ -19,6 +19,7 @@ export function SignUp() {
   function handleSignUp() {
     if (!name || !email || !password) {
       alert("Preencha todos os campos");
+      return;
     }
 
     api
