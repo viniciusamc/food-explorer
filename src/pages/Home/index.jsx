@@ -4,6 +4,13 @@ import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { Section } from "./styles";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+SwiperCore.use([Navigation, Pagination]);
 
 export function Home() {
   const [meals, setMeals] = useState([]);
@@ -20,22 +27,30 @@ export function Home() {
   return (
     <>
       <Header />
-      <Section>
+      <Swiper
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
+        slidesPerView={"4"}
+        centeredSlides={true}
+        loop={true}
+        spaceBetween={55}
+        className="mySwiper"
+      >
         {meals.map((meal) => (
-          <Card
-            title={meal.name}
-            image={meal.picture}
-            altImage={meal.name}
-            value={meal.price}
-          />
+          <SwiperSlide key={meal.id}>
+            <Card
+              title={meal.name}
+              image={meal.picture}
+              altImage={meal.name}
+              value={meal.price}
+            />
+          </SwiperSlide>
         ))}
-        <Card
-          title="dasd"
-          image={`https://cdn.pixabay.com/photo/2023/03/22/20/16/muffin-7870491_960_720.jpg`}
-          altImage="Prato"
-          value="10,00"
-        />
-      </Section>
+        <div className="swiper-button-prev swiper-button-white"></div>
+        <div className="swiper-button-next swiper-button-white"></div>
+      </Swiper>
     </>
   );
 }
