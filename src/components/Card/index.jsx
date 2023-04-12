@@ -9,11 +9,14 @@ import {
 import { AiOutlinePlus, AiOutlineRight, AiOutlineHeart } from "react-icons/ai";
 import { IoIosRemove } from "react-icons/io";
 import { useState, useEffect } from "react";
-
 import heart from "../../assets/icons/heart.svg";
+
+import { api } from "../../services/api";
+import { useAuth } from "../../hooks/auth";
 
 export function Card({ image, altImage, title, value }) {
   const [req, setReq] = useState(1);
+  const { user } = useAuth();
 
   function handleAdd() {
     setReq(req + 1);
@@ -49,7 +52,11 @@ export function Card({ image, altImage, title, value }) {
           </span>
         </Quantity>
 
-        <StyledButton text="Incluir" />
+        {user.role === "admin" ? (
+          <StyledButton text="Editar" />
+        ) : (
+          <StyledButton text="Incluir" />
+        )}
 
         <Favorite>
           <img src={heart} />
