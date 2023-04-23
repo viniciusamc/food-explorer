@@ -14,7 +14,7 @@ import heart from "../../assets/icons/heart.svg";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
-export function Card({ image, altImage, title, value }) {
+export function Card({ image, altImage, title, value, onClick }) {
   const [req, setReq] = useState(1);
   const { user } = useAuth();
 
@@ -31,7 +31,7 @@ export function Card({ image, altImage, title, value }) {
   }
 
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Content>
         <img src={image} alt={altImage} />
 

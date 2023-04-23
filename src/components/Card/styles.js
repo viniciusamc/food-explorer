@@ -11,6 +11,7 @@ export const Container = styled.div`
   min-width: 210px;
   width: 90vw;
   max-width: 350px;
+  cursor: pointer;
 
   background-color: ${({ theme }) => theme.COLORS.DARK_200};
   color: ${({ theme }) => theme.COLORS.LIGHT_100};

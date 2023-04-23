@@ -9,48 +9,65 @@ import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useNavigate } from "react-router";
 
 SwiperCore.use([Navigation, Pagination]);
 
 export function Home() {
   const [meals, setMeals] = useState([]);
+  const [search, setSearch] = useState("");
+  const [image, setImage] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getMeals() {
-      const response = await api.get("/meals/list");
-      setMeals(response.data.getIndex);
+      const response = await api.get(
+        `/meals/?name=${search}&ingredients=${search}&category=${search}`
+      );
+
+      setMeals(response.data);
     }
 
     getMeals();
-  }, []);
+  }, [search]);
+
+  function handleDetail(id) {
+    navigate(`/details/${id}`);
+  }
 
   return (
     <>
       <Header />
-      <Swiper
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        slidesPerView={"4"}
-        centeredSlides={true}
-        loop={true}
-        spaceBetween={55}
-        className="mySwiper"
-      >
-        {meals.map((meal) => (
-          <SwiperSlide key={meal.id}>
-            <Card
-              title={meal.name}
-              image={meal.picture}
-              altImage={meal.name}
-              value={meal.price}
-            />
-          </SwiperSlide>
-        ))}
-        <div className="swiper-button-prev swiper-button-white"></div>
-        <div className="swiper-button-next swiper-button-white"></div>
-      </Swiper>
+      <Section>
+        <Swiper
+          style={{ width: "100vw" }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          slidesPerView={"4"}
+          centeredSlides={true}
+          loop={true}
+          spaceBetween={55}
+        >
+          {meals
+            .filter((meal) => meal.category == "sobremesa")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Card
+                  title={meal.name}
+                  image={`${api.defaults.baseURL}files/${meal.picture}`}
+                  altImage={meal.name}
+                  value={meal.price}
+                  onClick={() => handleDetail(meal.id)}
+                />
+              </SwiperSlide>
+            ))}
+          <div className="swiper-button-prev swiper-button-white"></div>
+          <div className="swiper-button-next swiper-button-white"></div>
+        </Swiper>
+      </Section>
     </>
   );
 }
