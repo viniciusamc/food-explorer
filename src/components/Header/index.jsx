@@ -16,11 +16,14 @@ import { useAuth } from "../../hooks/auth";
 
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router";
 
 export function Header() {
   const [screen, setScreen] = useState(false);
   const { signOut, user } = useAuth();
   const [cartCount, setCartCount] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleResize() {
@@ -72,7 +75,10 @@ export function Header() {
       </Search>
 
       {user.role === "admin" ? (
-        <StyledHeader altText={`${screen ? "Novo Prato" : ""}`} />
+        <StyledHeader
+          altText={`${screen ? "Novo Prato" : ""}`}
+          onClick={() => navigate("/addmeal")}
+        />
       ) : (
         <StyledHeader
           text={<img src={cart} />}

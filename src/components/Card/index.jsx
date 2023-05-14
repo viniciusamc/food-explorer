@@ -5,6 +5,7 @@ import {
   Quantity,
   Favorite,
   StyledButton,
+  Img,
 } from "./styles";
 import { AiOutlinePlus, AiOutlineRight, AiOutlineHeart } from "react-icons/ai";
 import { IoIosRemove } from "react-icons/io";
@@ -33,7 +34,7 @@ export function Card({ image, altImage, title, value, onClick }) {
   return (
     <Container onClick={onClick}>
       <Content>
-        <img src={image} alt={altImage} />
+        <Img src={image} alt={altImage} />
 
         <Text>
           <h2>

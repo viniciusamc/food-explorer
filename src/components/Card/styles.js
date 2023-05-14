@@ -26,10 +26,6 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 12px;
-
-  img {
-    width: 80%;
-  }
 `;
 
 export const Text = styled.div`
@@ -83,6 +79,12 @@ export const Favorite = styled.div`
 export const StyledButton = styled(Button)`
   font-size: 18px;
   font-weight: 500;
+  width: fit-content;
+  padding-inline: 40px;
   font-family: ${({ theme }) => theme.FONTS.POPPINS};
   background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+`;
+
+export const Img = styled.img`
+  width: 150px;
 `;

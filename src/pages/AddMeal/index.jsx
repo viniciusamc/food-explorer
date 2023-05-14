@@ -43,6 +43,14 @@ export function AddMeal() {
     }
   }
 
+  function newIngredient() {
+    const [ingredients, setIngredients] = useState([]);
+
+    function handleNewIngredient() {
+      setIngredients((prevState) => [...prevState, ingredients]);
+    }
+  }
+
   return (
     <Container>
       <Header />
@@ -72,8 +80,22 @@ export function AddMeal() {
           </Col>
 
           <Col>
-            <IngredientItem value="Pão " />
-            <IngredientItem isNew placeholder="Adicionar  " />
+            {ingredients.map((ingredient, index) => (
+              <IngredientItem
+                value={ingredient}
+                onClick={() => {
+                  handleNewIngredient();
+                }}
+                key={String(index)}
+              />
+            ))}
+
+            <IngredientItem
+              isNew
+              placeholder="Adicionar"
+              onChange={(e) => set}
+              onClick={newIngredient}
+            />
             <Input
               placeholder={"R$ 0,00"}
               label="Preço"

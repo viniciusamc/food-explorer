@@ -19,9 +19,9 @@ export default {
     LIGHT_600: "#76797B",
     LIGHT_700: "#4D585E",
 
+    GRADIENTS_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%);",
     GRADIENTS_100:
       "linear-gradient(90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);",
-    GRADIENTS_200: "linear-gradient(180deg, #091E26 0%, #00131C 100%);",
 
     TOMATO_100: "#750310",
     TOMATO_200: "#92000E",

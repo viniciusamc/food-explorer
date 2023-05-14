@@ -3,13 +3,15 @@ import { Card } from "../../components/Card";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
-import { Section } from "./styles";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useNavigate } from "react-router";
+import banner from "../../assets/pictures/home-page.png";
+
+import { Section, Banner } from "./styles";
 
 SwiperCore.use([Navigation, Pagination]);
 
@@ -39,6 +41,14 @@ export function Home() {
   return (
     <>
       <Header />
+
+      <Banner>
+        <img src={banner} alt="banner" />
+        <div>
+          <h1>Sabores inigualáveis</h1>
+          <h3>Sinta o cuidado do preparo com ingredientes selecionados.</h3>
+        </div>
+      </Banner>
       <Section>
         <Swiper
           style={{ width: "100vw" }}
