@@ -1,22 +1,10 @@
-import { Container, Content, Link, Form, Label, Col } from "./styles";
-import { TextArea } from "../../components/TextArea";
-import { Header } from "../../components/Header";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-
-import { AiOutlineLeft } from "react-icons/ai";
-import { IngredientItem } from "../../components/IngredientItem";
-
-import { api } from "../../services/api";
-import { useEffect } from "react";
-import { useState } from "react";
-
 export function AddMeal() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [imageFile, setImageFile] = useState();
+  const [imageFile, setImageFile] = useState("");
+  const [ingredients, setIngredients] = useState([]);
 
   async function handleAddMeal() {
     // if (!title || !desc || !price || !category || !imageFile) {
@@ -44,11 +32,7 @@ export function AddMeal() {
   }
 
   function newIngredient() {
-    const [ingredients, setIngredients] = useState([]);
-
-    function handleNewIngredient() {
-      setIngredients((prevState) => [...prevState, ingredients]);
-    }
+    setIngredients((prevState) => [...prevState, ""]);
   }
 
   return (

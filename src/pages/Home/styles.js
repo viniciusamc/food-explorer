@@ -5,20 +5,21 @@ export const Section = styled.div``;
 export const Banner = styled.div`
   background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
   width: 90vw;
-  height: 260px;
-  max-width: 1200px;
-  margin: 160px auto;
+  height: 30vh;
+  padding: 20px;
+  margin: 30px auto;
   border-radius: 3px;
   position: relative;
-  display: grid;
-  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
   > img {
-    position: absolute;
+    display: block;
     min-width: 191px;
     width: 55%;
-    left: -100px;
-    bottom: calc(50% - 145px);
+    max-width: 550px;
   }
 
   > div {
@@ -26,6 +27,7 @@ export const Banner = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
   }
 
   h1,
@@ -40,6 +42,18 @@ export const Banner = styled.div`
   }
   h3 {
     font-size: 0.75rem;
+  }
+
+  @media (min-width: 428px) {
+    flex-direction: row;
+
+    > img {
+      transform: translateX(-20%);
+    }
+
+    > div {
+      text-align: left;
+    }
   }
 
   @media (min-width: 768px) {
