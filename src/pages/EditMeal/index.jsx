@@ -19,7 +19,7 @@ import { api } from "../../services/api";
 
 import { useAuth } from "../../hooks/auth";
 
-export function AddMeal() {
+export function EditMeal() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");

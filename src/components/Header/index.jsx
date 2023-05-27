@@ -17,6 +17,7 @@ import { useAuth } from "../../hooks/auth";
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export function Header() {
   const [screen, setScreen] = useState(false);
@@ -47,9 +48,9 @@ export function Header() {
         })
         .catch((error) => {
           if (error.response) {
-            console.log(error.response.data.message);
+            alert(error.response.data.message);
           } else {
-            console.log("Erro ao buscar favoritos");
+            alert("Erro ao buscar favoritos");
           }
         });
     }
@@ -61,10 +62,12 @@ export function Header() {
         <img src={menuBurguer} />
       </button>
 
-      <Logo>
-        <img src={logo} />
-        {user.role === "admin" ? <span>admin</span> : <span></span>}
-      </Logo>
+      <Link to="/">
+        <Logo>
+          <img src={logo} />
+          {user.role === "admin" ? <span>admin</span> : <span></span>}
+        </Logo>
+      </Link>
 
       <Search>
         <StyledInput

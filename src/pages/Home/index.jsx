@@ -4,21 +4,31 @@ import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useNavigate } from "react-router";
 import banner from "../../assets/pictures/home-page.png";
+import { Footer } from "../../components/Footer";
 
-import { Section, Banner } from "./styles";
+import { Section, Banner, Title } from "./styles";
 
-SwiperCore.use([Navigation, Pagination]);
+import SwiperCore, {
+  Navigation,
+  Pagination,
+  Mousewheel,
+  Autoplay,
+} from "swiper";
+import { useAuth } from "../../hooks/auth";
+
+SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
 export function Home() {
   const [meals, setMeals] = useState([]);
   const [search, setSearch] = useState("");
   const [image, setImage] = useState();
+
+  const { user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -35,7 +45,13 @@ export function Home() {
   }, [search]);
 
   function handleDetail(id) {
-    navigate(`/details/${id}`);
+    // navigate(`/details/${id}`);
+
+    if (user.role === "admin") {
+      navigate(`/edit/${id}`);
+    } else {
+      navigate(`/details/${id}`);
+    }
   }
 
   return (
@@ -50,6 +66,39 @@ export function Home() {
         </div>
       </Banner>
       <Section>
+        <h1>Entradas</h1>
+        <Swiper
+          autoplay={true}
+          delay={1000}
+          style={{ width: "100%" }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          slidesPerView={"3"}
+          centeredSlides={true}
+          loop={true}
+          spaceBetween={-75}
+        >
+          {meals
+            .filter((meal) => meal.category == "Entrada")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Card
+                  title={meal.name}
+                  image={`${api.defaults.baseURL}files/${meal.picture}`}
+                  altImage={meal.name}
+                  desc={meal.desc}
+                  value={meal.price}
+                  onClick={() => handleDetail(meal.id)}
+                />
+              </SwiperSlide>
+            ))}
+          <div className="swiper-button-prev swiper-button-white"></div>
+          <div className="swiper-button-next swiper-button-white"></div>
+        </Swiper>
+      </Section>
+      {/* <Section>
         <Swiper
           style={{ width: "100vw" }}
           navigation={{
@@ -61,8 +110,9 @@ export function Home() {
           loop={true}
           spaceBetween={55}
         >
+          <h1>Refeições</h1>
           {meals
-            .filter((meal) => meal.category == "sobremesa")
+            .filter((meal) => meal.category == "Prato")
             .map((meal) => (
               <SwiperSlide key={meal.id}>
                 <Card
@@ -77,7 +127,9 @@ export function Home() {
           <div className="swiper-button-prev swiper-button-white"></div>
           <div className="swiper-button-next swiper-button-white"></div>
         </Swiper>
-      </Section>
+      </Section> */}
+
+      <Footer />
     </>
   );
 }

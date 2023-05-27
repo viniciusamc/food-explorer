@@ -14,9 +14,16 @@ function AuthProvider({ children }) {
         .then((response) => {
           const { user, token } = response.data;
           api.defaults.headers.authorization = `Bearer ${token}`;
-          setData({ user, token });
 
-          localStorage.setItem("@explorer:user", JSON.stringify(user));
+          const userWithoutPassword = { ...user };
+          delete userWithoutPassword.password;
+
+          setData({ user: userWithoutPassword, token });
+
+          localStorage.setItem(
+            "@explorer:user",
+            JSON.stringify(userWithoutPassword)
+          );
           localStorage.setItem("@explorer:token", token);
         });
     } catch (error) {

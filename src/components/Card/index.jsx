@@ -15,7 +15,7 @@ import heart from "../../assets/icons/heart.svg";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 
-export function Card({ image, altImage, title, value, onClick }) {
+export function Card({ image, altImage, title, value, desc, onClick }) {
   const [req, setReq] = useState(1);
   const { user } = useAuth();
 
@@ -40,6 +40,7 @@ export function Card({ image, altImage, title, value, onClick }) {
           <h2>
             {title} {AiOutlineRight}
           </h2>
+          <h3>{desc}</h3>
           <p>{value}</p>
         </Text>
 

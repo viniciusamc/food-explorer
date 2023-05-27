@@ -1,4 +1,5 @@
 import { Container, Content } from "./styles";
+import { IMaskInput } from "react-imask";
 
 export function Input({ icon: Icon, label, ...rest }) {
   return (
@@ -6,7 +7,7 @@ export function Input({ icon: Icon, label, ...rest }) {
       {<label>{label}</label>}
       <Container>
         {Icon && <Icon size={20} />}
-        <input {...rest} />
+        <IMaskInput {...rest} />
       </Container>
     </Content>
   );

@@ -52,7 +52,7 @@ export const Logo = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-
+  cursor: pointer;
   > img {
     width: 20vw;
     max-width: 200px;

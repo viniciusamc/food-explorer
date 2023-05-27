@@ -45,11 +45,16 @@ export const Text = styled.div`
     color: ${({ theme }) => theme.COLORS.CAKE_200};
   }
 
-  p::before {
-    content: "R$";
-    font-size: 16px;
-    margin-right: 2px;
-    font-family: ${({ theme }) => theme.FONTS.POPPINS};
+  > h3 {
+    display: none;
+
+    @media (min-width: 900px) {
+      display: block;
+      font-family: ${({ theme }) => theme.FONTS.POPPINS};
+      font-size: 1rem;
+      font-weight: 500;
+      color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    }
   }
 `;
 

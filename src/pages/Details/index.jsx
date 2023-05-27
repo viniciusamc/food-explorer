@@ -30,7 +30,6 @@ export function Details() {
     async function getDetails() {
       await api.get(`/meals/details/${params.id}`).then((response) => {
         setData(response.data);
-        console.log(response);
         setImage(`${api.defaults.baseURL}files/${response.data.picture}`);
       });
     }
