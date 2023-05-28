@@ -14,7 +14,7 @@ import { Header } from "../../components/Header";
 import { GoTop } from "../../components/GoTop";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 
@@ -23,6 +23,7 @@ export function Details() {
   const { user } = useAuth();
   const [data, setData] = useState({});
   const [image, setImage] = useState();
+  const navigate = useNavigate();
 
   const params = useParams();
 
@@ -48,6 +49,14 @@ export function Details() {
 
   function handleAddToCart() {
     api.post("/cart", {});
+  }
+
+  function handleLinks(id) {
+    if (user.role === "admin") {
+      navigate(`/edit/${id}`);
+    } else {
+      alert("Adicionado ao Carrinho");
+    }
   }
 
   return (
@@ -79,10 +88,17 @@ export function Details() {
               <span>{count}</span>
               <AiOutlinePlus onClick={handleAdd} />
 
-              <Button
-                icon={<img src={recipe} />}
-                text={`pedir - R$ ${data.price}`}
-              />
+              {user.role === "admin" ? (
+                <Button
+                  altText={`Editar`}
+                  onClick={() => handleLinks(data.id)}
+                />
+              ) : (
+                <Button
+                  altText={`Pedir - ${data.price}`}
+                  onClick={() => navigate("/editmeal/${params.id}")}
+                />
+              )}
             </Cart>
           </Info>
         </Content>

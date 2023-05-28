@@ -18,6 +18,8 @@ import { Button } from "../../components/Button";
 import { api } from "../../services/api";
 
 import { useAuth } from "../../hooks/auth";
+import { useEffect } from "react";
+import { useParams } from "react-router";
 
 export function EditMeal() {
   const [name, setName] = useState("");
@@ -27,6 +29,7 @@ export function EditMeal() {
   const [image, setImage] = useState("");
 
   const { user } = useAuth();
+  const { id } = useParams();
 
   const [options, setOptions] = useState([
     "Categoria",
@@ -62,7 +65,7 @@ export function EditMeal() {
     setImage(e.target.files[0]);
   }
 
-  async function handleAddMeal() {
+  async function handleUpdateMeal() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
@@ -77,22 +80,26 @@ export function EditMeal() {
       return;
     }
 
-    if (!image || !name || !category || !price || !ingredients || !desc) {
-      alert("Preencha todos os campos");
-      return;
+    await api.put(`/meals/${id}`, formData).then((response) => {
+      alert("Prato atualizado com sucesso");
+    });
+  }
+
+  useEffect(() => {
+    async function getIngredients() {
+      await api.get(`/meals/details/${id}`).then((response) => {
+        console.log(response.data);
+        setImage(response.data.picture);
+        setName(response.data.name);
+        setCategory(response.data.category);
+        setPrice(response.data.price);
+        setIngredients(response.data.ingredients);
+        setDesc(response.data.desc);
+      });
     }
 
-    const token = localStorage.getItem("@explorer:token");
-
-    await api
-      .post("/meals", formData)
-      .then((response) => {
-        alert("Prato adicionado com sucesso!");
-      })
-      .catch((error) => {
-        alert("Erro ao adicionar prato");
-      });
-  }
+    getIngredients();
+  }, [id]);
 
   return (
     <Container>
@@ -114,6 +121,7 @@ export function EditMeal() {
               placeholder={"Ex.: Salada Ceasar"}
               label="Nome"
               id="name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
 
@@ -152,6 +160,7 @@ export function EditMeal() {
             <Input
               placeholder={"R$ 0,00"}
               options={{ prefix: "R$ " }}
+              value={price}
               label="Preço"
               mask={"R$" + " 000,00"}
               onChange={(e) => setPrice(e.target.value) || e.target.value}
@@ -159,9 +168,7 @@ export function EditMeal() {
           </Col>
 
           <TextArea
-            placeholder={
-              "Fale brevemente sobre o prato, seus ingredientes e composição"
-            }
+            placeholder={desc}
             label="Descrição"
             onChange={(e) => setDesc(e.target.value)}
           />
@@ -169,7 +176,7 @@ export function EditMeal() {
           <Button
             text={"Salvar Alterações"}
             style={{ backgroundColor: "#AB4D55" }}
-            onClick={handleAddMeal}
+            onClick={handleUpdateMeal}
           />
         </Form>
       </Content>

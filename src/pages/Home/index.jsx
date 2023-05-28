@@ -45,13 +45,7 @@ export function Home() {
   }, [search]);
 
   function handleDetail(id) {
-    // navigate(`/details/${id}`);
-
-    if (user.role === "admin") {
-      navigate(`/edit/${id}`);
-    } else {
-      navigate(`/details/${id}`);
-    }
+    navigate(`/details/${id}`);
   }
 
   return (
@@ -82,6 +76,39 @@ export function Home() {
         >
           {meals
             .filter((meal) => meal.category == "Entrada")
+            .map((meal) => (
+              <SwiperSlide key={meal.id}>
+                <Card
+                  title={meal.name}
+                  image={`${api.defaults.baseURL}files/${meal.picture}`}
+                  altImage={meal.name}
+                  desc={meal.desc}
+                  value={meal.price}
+                  onClick={() => handleDetail(meal.id)}
+                />
+              </SwiperSlide>
+            ))}
+          <div className="swiper-button-prev swiper-button-white"></div>
+          <div className="swiper-button-next swiper-button-white"></div>
+        </Swiper>
+      </Section>
+      <Section>
+        <h1>Prato Principal</h1>
+        <Swiper
+          autoplay={true}
+          delay={1000}
+          style={{ width: "100%" }}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          slidesPerView={"3"}
+          centeredSlides={true}
+          loop={true}
+          spaceBetween={-75}
+        >
+          {meals
+            .filter((meal) => meal.category == "Prato Principal")
             .map((meal) => (
               <SwiperSlide key={meal.id}>
                 <Card

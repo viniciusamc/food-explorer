@@ -4,7 +4,7 @@ export function TextArea({ label, value, ...rest }) {
   return (
     <Content>
       <label>{label}</label>
-      <Container {...rest}>{value}</Container>;
+      <textarea {...rest}>{value}</textarea>;
     </Content>
   );
 }
