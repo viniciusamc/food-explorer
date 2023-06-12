@@ -61,6 +61,7 @@ export function Details() {
 
   return (
     <Container>
+      <GoTop />
       <Header />
       <Back>
         <Link to="/">
@@ -84,20 +85,22 @@ export function Details() {
             )}
 
             <Cart>
-              <AiOutlineMinus onClick={handleRemove} />
-              <span>{count}</span>
-              <AiOutlinePlus onClick={handleAdd} />
-
               {user.role === "admin" ? (
                 <Button
                   altText={`Editar`}
                   onClick={() => handleLinks(data.id)}
                 />
               ) : (
-                <Button
-                  altText={`Pedir - ${data.price}`}
-                  onClick={() => navigate("/editmeal/${params.id}")}
-                />
+                <>
+                  <AiOutlineMinus onClick={handleRemove} />
+                  <span>{count}</span>
+                  <AiOutlinePlus onClick={handleAdd} />
+                  <Button
+                    altText={`Incluir ∙ ${data.price}`}
+                    onClick={() => alert("Adicionado ao Carrinho")}
+                    style={{ marginLeft: "24px" }}
+                  />
+                </>
               )}
             </Cart>
           </Info>

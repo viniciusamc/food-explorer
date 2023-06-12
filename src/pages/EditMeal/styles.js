@@ -81,7 +81,6 @@ export const Label = styled.div`
   font-family: ${({ theme }) => theme.FONTS.POPPINS};
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 8px;
   color: ${({ theme }) => theme.COLORS.LIGHT_100};
 `;
 
@@ -124,4 +123,51 @@ export const Select = styled.select`
 
 export const Section = styled.div`
   width: 100%;
+`;
+
+export const IngredientsList = styled.div`
+  background-color: ${({ theme }) => theme.COLORS.DARK_900};
+  height: 48px;
+  padding: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  gap: 8px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.COLORS.DARK_700};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.COLORS.LIGHT_100};
+    border-radius: 8px;
+  }
+`;
+
+export const Ingredients = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  gap: 8px;
+
+  @media (min-width: 1024px) {
+    width: 200%;
+  }
+`;
+
+export const Interaction = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
 `;

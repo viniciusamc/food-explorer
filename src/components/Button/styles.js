@@ -8,6 +8,7 @@ export const Container = styled.div`
   cursor: pointer;
 
   border-radius: 10px;
+  border: 0;
   padding: 12px 24px;
   font-size: 14px;
   font-family: ${({ theme }) => theme.FONTS.POPPINS};
@@ -16,6 +17,11 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 8px;
+
+  :hover {
+    filter: brightness(0.9);
+    transition-duration: 300ms;
+  }
 
   p {
     font-size: 14px;

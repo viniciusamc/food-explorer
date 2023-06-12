@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 import banner from "../../assets/pictures/home-page.png";
 import { Footer } from "../../components/Footer";
 
-import { Section, Banner, Title } from "./styles";
+import { Section, Banner, Title, Content } from "./styles";
 
 import SwiperCore, {
   Navigation,
@@ -20,6 +20,7 @@ import SwiperCore, {
   Autoplay,
 } from "swiper";
 import { useAuth } from "../../hooks/auth";
+import { GoTop } from "../../components/GoTop";
 
 SwiperCore.use([Navigation, Pagination, Mousewheel, Autoplay]);
 
@@ -35,7 +36,7 @@ export function Home() {
   useEffect(() => {
     async function getMeals() {
       const response = await api.get(
-        `/meals/?name=${search}&ingredients=${search}&category=${search}`
+        `/meals/?name=${search}&ingredients=${search}`
       );
 
       setMeals(response.data);
@@ -50,8 +51,8 @@ export function Home() {
 
   return (
     <>
-      <Header />
-
+      <GoTop />
+      <Header search={setSearch} />
       <Banner>
         <img src={banner} alt="banner" />
         <div>
@@ -59,102 +60,157 @@ export function Home() {
           <h3>Sinta o cuidado do preparo com ingredientes selecionados.</h3>
         </div>
       </Banner>
-      <Section>
-        <h1>Entradas</h1>
-        <Swiper
-          autoplay={true}
-          delay={1000}
-          style={{ width: "100%" }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          slidesPerView={"3"}
-          centeredSlides={true}
-          loop={true}
-          spaceBetween={-75}
-        >
-          {meals
-            .filter((meal) => meal.category == "Entrada")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Card
-                  title={meal.name}
-                  image={`${api.defaults.baseURL}files/${meal.picture}`}
-                  altImage={meal.name}
-                  desc={meal.desc}
-                  value={meal.price}
-                  onClick={() => handleDetail(meal.id)}
-                />
-              </SwiperSlide>
-            ))}
-          <div className="swiper-button-prev swiper-button-white"></div>
-          <div className="swiper-button-next swiper-button-white"></div>
-        </Swiper>
-      </Section>
-      <Section>
-        <h1>Prato Principal</h1>
-        <Swiper
-          autoplay={true}
-          delay={1000}
-          style={{ width: "100%" }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          slidesPerView={"3"}
-          centeredSlides={true}
-          loop={true}
-          spaceBetween={-75}
-        >
-          {meals
-            .filter((meal) => meal.category == "Prato Principal")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Card
-                  title={meal.name}
-                  image={`${api.defaults.baseURL}files/${meal.picture}`}
-                  altImage={meal.name}
-                  desc={meal.desc}
-                  value={meal.price}
-                  onClick={() => handleDetail(meal.id)}
-                />
-              </SwiperSlide>
-            ))}
-          <div className="swiper-button-prev swiper-button-white"></div>
-          <div className="swiper-button-next swiper-button-white"></div>
-        </Swiper>
-      </Section>
-      {/* <Section>
-        <Swiper
-          style={{ width: "100vw" }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          slidesPerView={"4"}
-          centeredSlides={true}
-          loop={true}
-          spaceBetween={55}
-        >
+
+      <Content>
+        <Section>
           <h1>Refeições</h1>
-          {meals
-            .filter((meal) => meal.category == "Prato")
-            .map((meal) => (
-              <SwiperSlide key={meal.id}>
-                <Card
-                  title={meal.name}
-                  image={`${api.defaults.baseURL}files/${meal.picture}`}
-                  altImage={meal.name}
-                  value={meal.price}
-                  onClick={() => handleDetail(meal.id)}
-                />
-              </SwiperSlide>
-            ))}
-          <div className="swiper-button-prev swiper-button-white"></div>
-          <div className="swiper-button-next swiper-button-white"></div>
-        </Swiper>
-      </Section> */}
+          {meals.length === 0 ? (
+            <p>nenhum item</p>
+          ) : (
+            <Swiper
+              autoplay={true}
+              delay={1000}
+              style={{ width: "100%" }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              spaceBetween={-150}
+              centeredSlides={true}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 0,
+                },
+                560: {
+                  slidesPerView: 2,
+                  spaceBetween: 25,
+                  centeredSlides: false,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {meals.map((meal) => (
+                <SwiperSlide key={meal.id}>
+                  <Card
+                    id={meal.id}
+                    title={meal.name}
+                    image={`${api.defaults.baseURL}files/${meal.picture}`}
+                    altImage={meal.name}
+                    desc={meal.desc}
+                    value={meal.price}
+                    onClick={() => handleDetail(meal.id)}
+                  />
+                </SwiperSlide>
+              ))}
+              <div className="swiper-button-prev swiper-button-white"></div>
+              <div className="swiper-button-next swiper-button-white"></div>
+            </Swiper>
+          )}
+        </Section>
+
+        <Section>
+          <h1>Sobremesas</h1>
+          {meals.length === 0 ? (
+            <p>nenhum item</p>
+          ) : (
+            <Swiper
+              autoplay={true}
+              delay={1000}
+              style={{ width: "100%" }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              spaceBetween={-150}
+              centeredSlides={true}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 0,
+                },
+                560: {
+                  slidesPerView: 2,
+                  spaceBetween: 25,
+                  centeredSlides: false,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {meals
+                .filter((meal) => meal.category === "Sobremesa")
+                .map((meal) => (
+                  <SwiperSlide key={meal.id}>
+                    <Card
+                      id={meal.id}
+                      title={meal.name}
+                      image={`${api.defaults.baseURL}files/${meal.picture}`}
+                      altImage={meal.name}
+                      desc={meal.desc}
+                      value={meal.price}
+                    />
+                  </SwiperSlide>
+                ))}
+              <div className="swiper-button-prev swiper-button-white"></div>
+              <div className="swiper-button-next swiper-button-white"></div>
+            </Swiper>
+          )}
+        </Section>
+
+        <Section>
+          <h1>Bebidas</h1>
+          {meals.length === 0 ? (
+            <p>nenhum item</p>
+          ) : (
+            <Swiper
+              autoplay={true}
+              delay={1000}
+              style={{ width: "100%" }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              spaceBetween={-150}
+              centeredSlides={true}
+              breakpoints={{
+                320: {
+                  slidesPerView: 1,
+                  spaceBetween: 0,
+                },
+                560: {
+                  slidesPerView: 2,
+                  spaceBetween: 25,
+                  centeredSlides: false,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {meals
+                .filter((meal) => meal.category === "Bebidas")
+                .map((meal) => (
+                  <SwiperSlide key={meal.id}>
+                    <Card
+                      id={meal.id}
+                      title={meal.name}
+                      image={`${api.defaults.baseURL}files/${meal.picture}`}
+                      altImage={meal.name}
+                      desc={meal.desc}
+                      value={meal.price}
+                    />
+                  </SwiperSlide>
+                ))}
+              <div className="swiper-button-prev swiper-button-white"></div>
+              <div className="swiper-button-next swiper-button-white"></div>
+            </Swiper>
+          )}
+        </Section>
+      </Content>
 
       <Footer />
     </>

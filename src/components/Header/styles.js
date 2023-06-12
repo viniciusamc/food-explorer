@@ -1,86 +1,123 @@
 import styled from "styled-components";
-import { Input } from "../Input";
-import { Button } from "../Button";
-
-export const StyledInput = styled(Input)`
-  ::placeholder {
-    text-align: center;
-  }
-
-  width: 500px;
-`;
-
-export const StyledHeader = styled(Button)`
-  max-width: 216px;
-
-  @media (max-width: 950px) {
-    background-color: transparent;
-    width: fit-content;
-    padding: 0;
-  }
-`;
 
 export const Container = styled.header`
-  width: 100vw;
-  max-height: 114px;
+  width: 100%;
+  height: 96px;
+  display: flex;
+  justify-content: space-around;
 
-  padding: 56px 28px 24px 28px;
-
+  align-items: center;
   background-color: ${({ theme }) => theme.COLORS.DARK_700};
 
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  @media (max-width: 950px) {
-    justify-content: space-between;
+  .active #menu {
+    height: 100vh;
+    visibility: visible;
+    overflow-y: auto;
   }
 
+  @media (min-width: 768px) {
+    justify-content: space-evenly;
+  }
+`;
+
+export const Logo = styled.div`
+  > img {
+    width: 200px;
+  }
+`;
+
+export const Nav = styled.nav`
   > button {
     background-color: transparent;
     border: none;
-    cursor: pointer;
-
-    @media (min-width: 950px) {
+    padding: 10px;
+  }
+  @media (min-width: 768px) {
+    > button {
       display: none;
     }
   }
 `;
 
-export const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  > img {
-    width: 20vw;
-    max-width: 200px;
-    min-width: 140px;
-  }
+export const Ul = styled.ul`
+  list-style: none;
+  display: block;
+  flex-direction: column;
+  position: absolute;
+  width: 100vw;
+  height: 0;
+  padding: 36px 28px;
+  top: 96px;
+  right: 0px;
+  z-index: 10;
 
-  > span {
-    color: ${({ theme }) => theme.COLORS.CAKE_200};
-    font-family: ${({ theme }) => theme.FONTS.POPPINS};
-  }
+  visibility: hidden;
+  overflow-y: hidden;
+  transition: all 0.5s ease-in-out;
 
-  @media (min-width: 950px) {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0;
+  background-color: ${({ theme }) => theme.COLORS.DARK_400};
+
+  @media (min-width: 768px) {
+    display: none;
   }
 `;
 
 export const Search = styled.div`
-  width: 40%;
-  @media (max-width: 950px) {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    width: 30%;
+    max-width: 600px;
+  }
+`;
+
+export const List = styled.li`
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: ${({ theme }) => theme.FONTS.POPPINS};
+  color: ${({ theme }) => theme.COLORS.LIGHT_300};
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid ${({ theme }) => theme.COLORS.DARK_1000};
+`;
+
+export const Receipt = styled.div`
+  cursor: pointer;
+
+  > h3 {
     display: none;
+  }
+
+  > span {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 5px;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-family: ${({ theme }) => theme.FONTS.POPPINS};
+    font-weight: 500;
+    font-size: 14px;
+    background-color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    padding: 12px 40px;
+
+    > span,
+    h3 {
+      display: block;
+    }
   }
 `;
 
 export const Exit = styled.div`
-  cursor: pointer;
-  @media (max-width: 950px) {
-    display: none;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+    cursor: pointer;
   }
 `;

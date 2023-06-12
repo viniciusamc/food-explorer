@@ -1,11 +1,20 @@
 import styled from "styled-components";
 
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+`;
+
 export const Section = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  min-height: 400px;
   width: 80vw;
   max-width: 1250px;
+
   > h1 {
     font-family: ${({ theme }) => theme.FONTS.POPPINS};
     font-size: 2rem;
@@ -13,19 +22,28 @@ export const Section = styled.div`
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     margin-bottom: 20px;
   }
+
+  > p {
+    font-family: ${({ theme }) => theme.FONTS.POPPINS};
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    margin-bottom: 20px;
+    text-align: center;
+    height: 100%;
+  }
 `;
 
 export const Banner = styled.div`
   background: ${({ theme }) => theme.COLORS.GRADIENTS_200};
-  width: 90vw;
-  height: 30vh;
+  width: 80vw;
+  max-width: 1250px;
   padding: 20px;
   margin: 30px auto;
   border-radius: 3px;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
 
   > img {
@@ -57,8 +75,11 @@ export const Banner = styled.div`
     font-size: 0.75rem;
   }
 
-  @media (min-width: 428px) {
+  @media (min-width: 427px) {
     flex-direction: row;
+
+    width: 90vw;
+    height: fit-content;
 
     > img {
       transform: translateX(-20%);

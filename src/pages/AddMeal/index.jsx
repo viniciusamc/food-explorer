@@ -5,9 +5,11 @@ import {
   Link,
   Form,
   Label,
+  IngredientsList,
   Col,
   Select,
   Section,
+  Ingredients,
 } from "./styles";
 import { Header } from "../../components/Header";
 import { AiOutlineLeft } from "react-icons/ai";
@@ -18,6 +20,7 @@ import { Button } from "../../components/Button";
 import { api } from "../../services/api";
 
 import { useAuth } from "../../hooks/auth";
+import { GoTop } from "../../components/GoTop";
 
 export function AddMeal() {
   const [name, setName] = useState("");
@@ -50,6 +53,7 @@ export function AddMeal() {
     }
 
     setIngredients((prevState) => [...prevState, newIngredient]);
+    setNewIngredient("");
   }
 
   function handleRemoveIngredient(ingredient) {
@@ -96,6 +100,7 @@ export function AddMeal() {
 
   return (
     <Container>
+      <GoTop />
       <Header />
       <Content>
         <Link>
@@ -134,21 +139,26 @@ export function AddMeal() {
           </Col>
 
           <Col>
-            {ingredients.map((ingredient, index) => (
-              <IngredientItem
-                value={ingredient}
-                onClick={() => handleRemoveIngredient(ingredient)}
-                key={String(index)}
-              />
-            ))}
+            <Ingredients>
+              <Label>Ingredientes</Label>
+              <IngredientsList>
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                    key={String(index)}
+                  />
+                ))}
 
-            <IngredientItem
-              isNew
-              placeholder="Adicionar"
-              onChange={(e) => setNewIngredient(e.target.value)}
-              value={newIngredient}
-              onClick={handleNewIngredient}
-            />
+                <IngredientItem
+                  isNew
+                  placeholder="Adicionar"
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  value={newIngredient}
+                  onClick={handleNewIngredient}
+                />
+              </IngredientsList>
+            </Ingredients>
             <Input
               placeholder={"R$ 0,00"}
               options={{ prefix: "R$ " }}
@@ -168,7 +178,11 @@ export function AddMeal() {
 
           <Button
             text={"Salvar Alterações"}
-            style={{ backgroundColor: "#AB4D55" }}
+            style={{
+              backgroundColor: "#AB4D55",
+              width: "20%",
+              alignSelf: "flex-end",
+            }}
             onClick={handleAddMeal}
           />
         </Form>

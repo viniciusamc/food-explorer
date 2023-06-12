@@ -11,13 +11,24 @@ import { AiOutlinePlus, AiOutlineRight, AiOutlineHeart } from "react-icons/ai";
 import { IoIosRemove } from "react-icons/io";
 import { useState, useEffect } from "react";
 import heart from "../../assets/icons/heart.svg";
+import pencil from "../../assets/icons/pencil.svg";
 
-import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
+import { useNavigate } from "react-router";
 
-export function Card({ image, altImage, title, value, desc, onClick }) {
+export function Card({
+  image,
+  altImage,
+  title,
+  value,
+  desc,
+  // onClick,
+  // onFavorite,
+  id,
+}) {
   const [req, setReq] = useState(1);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   function handleAdd() {
     setReq(req + 1);
@@ -31,8 +42,16 @@ export function Card({ image, altImage, title, value, desc, onClick }) {
     }
   }
 
+  function handleEdit(id) {
+    navigate(`/edit/${id}`);
+  }
+
+  function handleView(id) {
+    navigate(`/details/${id}`);
+  }
+
   return (
-    <Container onClick={onClick}>
+    <Container>
       <Content>
         <Img src={image} alt={altImage} />
 
@@ -44,24 +63,42 @@ export function Card({ image, altImage, title, value, desc, onClick }) {
           <p>{value}</p>
         </Text>
 
-        <Quantity>
-          <span>
-            <IoIosRemove onClick={handleSub} />
-          </span>
-          <h3>{req}</h3>
-          <span>
-            <AiOutlinePlus onClick={handleAdd} />
-          </span>
-        </Quantity>
+        {user.role === "admin" ? (
+          <></>
+        ) : (
+          <Quantity>
+            <span>
+              <IoIosRemove onClick={handleSub} />
+            </span>
+            <h3>{req}</h3>
+            <span>
+              <AiOutlinePlus onClick={handleAdd} />
+            </span>
+          </Quantity>
+        )}
 
         {user.role === "admin" ? (
-          <StyledButton text="Editar" />
+          <></>
         ) : (
-          <StyledButton text="Incluir" />
+          <StyledButton
+            text="Incluir"
+            onClick={() => {
+              handleView(id);
+            }}
+          />
         )}
 
         <Favorite>
-          <img src={heart} />
+          {user.role === "admin" ? (
+            <img
+              src={pencil}
+              onClick={() => {
+                handleEdit(id);
+              }}
+            />
+          ) : (
+            <img src={heart} />
+          )}
         </Favorite>
       </Content>
     </Container>

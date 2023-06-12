@@ -8,6 +8,9 @@ import {
   Col,
   Select,
   Section,
+  Interaction,
+  Ingredients,
+  IngredientsList,
 } from "./styles";
 import { Header } from "../../components/Header";
 import { AiOutlineLeft } from "react-icons/ai";
@@ -19,7 +22,8 @@ import { api } from "../../services/api";
 
 import { useAuth } from "../../hooks/auth";
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { GoTop } from "../../components/GoTop";
 
 export function EditMeal() {
   const [name, setName] = useState("");
@@ -41,6 +45,8 @@ export function EditMeal() {
   ]);
   const [ingredients, setIngredients] = useState([]);
   const [newIngredient, setNewIngredient] = useState("");
+
+  const navigate = useNavigate();
 
   function handleNewIngredient() {
     if (!newIngredient) {
@@ -81,14 +87,27 @@ export function EditMeal() {
     }
 
     await api.put(`/meals/${id}`, formData).then((response) => {
-      alert("Prato atualizado com sucesso");
+      alert("Prato atualizado com sucesso" + response.data);
+      navigate(`/details/${id}`);
+    });
+  }
+
+  async function handleDeleteMeal() {
+    confirm("Tem certeza que deseja excluir este prato?");
+
+    if (!confirm) {
+      return;
+    }
+
+    await api.delete(`/meals/${id}`).then((response) => {
+      alert("Prato excluído com sucesso");
+      navigate("/");
     });
   }
 
   useEffect(() => {
     async function getIngredients() {
       await api.get(`/meals/details/${id}`).then((response) => {
-        console.log(response.data);
         setImage(response.data.picture);
         setName(response.data.name);
         setCategory(response.data.category);
@@ -103,6 +122,7 @@ export function EditMeal() {
 
   return (
     <Container>
+      <GoTop />
       <Header />
       <Content>
         <Link>
@@ -142,21 +162,26 @@ export function EditMeal() {
           </Col>
 
           <Col>
-            {ingredients.map((ingredient, index) => (
-              <IngredientItem
-                value={ingredient}
-                onClick={() => handleRemoveIngredient(ingredient)}
-                key={String(index)}
-              />
-            ))}
+            <Ingredients>
+              <Label>Ingredientes</Label>
+              <IngredientsList>
+                {ingredients.map((ingredient, index) => (
+                  <IngredientItem
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                    key={String(index)}
+                  />
+                ))}
+                <IngredientItem
+                  isNew
+                  placeholder="Adicionar"
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  value={newIngredient}
+                  onClick={handleNewIngredient}
+                />
+              </IngredientsList>
+            </Ingredients>
 
-            <IngredientItem
-              isNew
-              placeholder="Adicionar"
-              onChange={(e) => setNewIngredient(e.target.value)}
-              value={newIngredient}
-              onClick={handleNewIngredient}
-            />
             <Input
               placeholder={"R$ 0,00"}
               options={{ prefix: "R$ " }}
@@ -173,11 +198,24 @@ export function EditMeal() {
             onChange={(e) => setDesc(e.target.value)}
           />
 
-          <Button
-            text={"Salvar Alterações"}
-            style={{ backgroundColor: "#AB4D55" }}
-            onClick={handleUpdateMeal}
-          />
+          <Interaction>
+            <Button
+              text={"Excluir Prato"}
+              style={{
+                backgroundColor: "#0D161B",
+                width: "20%",
+              }}
+              onClick={handleDeleteMeal}
+            />
+            <Button
+              text={"Salvar Alterações"}
+              style={{
+                backgroundColor: "#AB4D55",
+                width: "20%",
+              }}
+              onClick={handleUpdateMeal}
+            />
+          </Interaction>
         </Form>
       </Content>
     </Container>

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  height: 32px;
   align-items: center;
-  height: fit-content;
   padding: 10px 12px;
   border-radius: 8px;
   background-color: ${({ theme, isNew }) =>
@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 
   .button-delete {
-    color: ${({ theme }) => theme.COLORS.TOMATO_100};
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
     cursor: pointer;
     font-size: 20px;
   }
@@ -27,8 +27,8 @@ export const Container = styled.div`
     font-size: 20px;
     cursor: pointer;
   }
+
   > input {
-    width: 100%;
     padding: 10px;
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background: transparent;
