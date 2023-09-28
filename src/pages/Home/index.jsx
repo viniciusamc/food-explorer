@@ -39,6 +39,7 @@ export function Home() {
         `/meals/?name=${search}&ingredients=${search}`
       );
 
+        console.log(response.data)
       setMeals(response.data);
     }
 
@@ -92,15 +93,16 @@ export function Home() {
                 },
               }}
             >
-              {meals.map((meal) => (
+              {meals.filter((meal) => meal.category == "Prato Principal" || meal.category == "Entrada").map((meal) => (
                 <SwiperSlide key={meal.id}>
                   <Card
                     id={meal.id}
                     title={meal.name}
-                    image={`${api.defaults.baseURL}files/${meal.picture}`}
+                    image={`${api.defaults.baseURL}/files/${meal.picture}`}
                     altImage={meal.name}
                     desc={meal.desc}
-                    value={meal.price}
+                    value={"R$ " + (meal.price).replace(".",",")
+                    }
                     onClick={() => handleDetail(meal.id)}
                   />
                 </SwiperSlide>
@@ -111,7 +113,7 @@ export function Home() {
           )}
         </Section>
 
-        <Section>
+        <Section> 
           <h1>Sobremesas</h1>
           {meals.length === 0 ? (
             <p>nenhum item</p>
@@ -148,10 +150,11 @@ export function Home() {
                     <Card
                       id={meal.id}
                       title={meal.name}
-                      image={`${api.defaults.baseURL}files/${meal.picture}`}
+                      image={`${api.defaults.baseURL}/files/${meal.picture}`}
                       altImage={meal.name}
                       desc={meal.desc}
-                      value={meal.price}
+                     value={"R$ " + (meal.price).replace(".",",")}
+
                     />
                   </SwiperSlide>
                 ))}
@@ -192,16 +195,16 @@ export function Home() {
               }}
             >
               {meals
-                .filter((meal) => meal.category === "Bebidas")
+                .filter((meal) => meal.category === "Bebida")
                 .map((meal) => (
                   <SwiperSlide key={meal.id}>
                     <Card
                       id={meal.id}
                       title={meal.name}
-                      image={`${api.defaults.baseURL}files/${meal.picture}`}
+                      image={`${api.defaults.baseURL}/files/${meal.picture}`}
                       altImage={meal.name}
                       desc={meal.desc}
-                      value={meal.price}
+                     value={"R$ " + (meal.price).replace(".",",")}
                     />
                   </SwiperSlide>
                 ))}

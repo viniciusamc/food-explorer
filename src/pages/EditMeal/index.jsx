@@ -28,6 +28,7 @@ import { GoTop } from "../../components/GoTop";
 export function EditMeal() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
+  const [originalDesc, setOriginalDesc] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
@@ -63,7 +64,7 @@ export function EditMeal() {
 
   function handleRemoveIngredient(ingredient) {
     setIngredients((prevState) =>
-      prevState.filter((prevIngredient) => prevIngredient !== ingredient)
+      prevState.filter((prevIngredient) => prevIngredient !== ingredient),
     );
   }
 
@@ -114,6 +115,7 @@ export function EditMeal() {
         setPrice(response.data.price);
         setIngredients(response.data.ingredients);
         setDesc(response.data.desc);
+        setOriginalDesc(response.data.desc);
       });
     }
 
@@ -184,10 +186,8 @@ export function EditMeal() {
 
             <Input
               placeholder={"R$ 0,00"}
-              options={{ prefix: "R$ " }}
               value={price}
               label="Preço"
-              mask={"R$" + " 000,00"}
               onChange={(e) => setPrice(e.target.value) || e.target.value}
             />
           </Col>
@@ -195,6 +195,7 @@ export function EditMeal() {
           <TextArea
             placeholder={desc}
             label="Descrição"
+            value={desc || originalDesc}
             onChange={(e) => setDesc(e.target.value)}
           />
 

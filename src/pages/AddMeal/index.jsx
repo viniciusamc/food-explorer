@@ -86,16 +86,16 @@ export function AddMeal() {
       return;
     }
 
-    const token = localStorage.getItem("@explorer:token");
-
     await api
       .post("/meals", formData)
       .then((response) => {
-        alert("Prato adicionado com sucesso!");
+        alert(response.data);
       })
       .catch((error) => {
-        alert("Erro ao adicionar prato");
+        alert(error);
       });
+
+    name('');
   }
 
   return (
@@ -160,10 +160,8 @@ export function AddMeal() {
               </IngredientsList>
             </Ingredients>
             <Input
-              placeholder={"R$ 0,00"}
-              options={{ prefix: "R$ " }}
               label="Preço"
-              mask={"R$" + " 000,00"}
+                type="number"
               onChange={(e) => setPrice(e.target.value) || e.target.value}
             />
           </Col>
